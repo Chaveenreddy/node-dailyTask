@@ -26,10 +26,11 @@ const reqResHandler = (req, res) => {
 
 
             fs.writeFile('message.txt', message, (e) => {
-                res.statusCode = 302;
-                res.setHeader('location', "/");
-
-                return res.end();
+                res.write('<html>');
+                    res.write('<head><title>response</title></head>');
+                    res.write('<body><h1 id="value">User Input: ' + message + '</h1><form action="/message" method="POST"><input type="text" name ="message"/><button type ="submit">send</button></form> </body>');
+                    res.write('</html>');
+                    res.end();
             });
         })
     }
